@@ -1,6 +1,12 @@
 # OdinVite9TicTacToe
 TicTacToe with Vite / React
+Assignment is found here : https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
+Goal : Build a 3x3 TicTacToe game. 
+This is actually a TicTacToe or Connect 4 game. 
+It allows the player to change the size of the grid and will change the winning conditions when this happens. 
 
+
+##Notes
 ## 11/15
 ### Accomplishments :
 condensed code and cut it into parts.
@@ -10,13 +16,11 @@ created settings factory and made it work.
 same as 11-13 
 and!  the game buttons don't work any more.  trying to pass a setter through the GameButtons component, but no luck.   need more research
 
-
-
 ## 11/13
 
 can I search and pick squares by value?  All X squares?
 ### Accomplishments 
- * connected win condits for 2 game types
+* connected win condits for 2 game types
 * make game 3, 4, or connect 4 wins
 * scroll through game sizes.
 * changed the CSS styles for different sized boxes. 
