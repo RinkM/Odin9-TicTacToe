@@ -74,13 +74,18 @@ button:focus-visible {
   margin-top: 100px;
 }
 
-/* .square{
+.menuButton{
   text-align: center;
-  width: 100px;
-  height: 100px;
-  font-size: 7em;
+  width: auto;
+  height: 2em;
+  font-size: 1em;
   line-height: 1;
-} */
+  background-color: honeydew;
+  border-radius: 8px;
+
+  /* border: 1pt solid steelblue; */
+  margin: 5px;
+}
 
 .bigSquare{
   border-radius: 5px;

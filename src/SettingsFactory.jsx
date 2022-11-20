@@ -5,24 +5,24 @@
 
 
 
-const SettingsFactory = () => {
+const SettingsFactory = (size) => {
     const defaultSettings = {
     turnX: true,
     winner: null,
-    boardSize: 8,
+    boardSize: size,
     difficulty: 1,
     wins: [],
     fullLineWins: [],
     connect4Conditions: [],
-    gameSizes: [3, 4, 7, 22],
+    gameSizes: [2, 3, 4, 5, 6, 7, 22],
     gameMessage: "",
     messageList: ["Turn: X", "Turn: O", "Winner: X", "Winner: O", "Draw"],
     }
-
     defaultSettings.gameLog = [...Array(defaultSettings.boardSize**2).keys()]
     defaultSettings.fullBoard = [...Array(defaultSettings.boardSize**2).keys()];
     defaultSettings.fullLineWins = fullLineWins(defaultSettings)
     defaultSettings.connect4Conditions = find4Wins(defaultSettings)
+
   return defaultSettings
   }
   

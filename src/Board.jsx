@@ -10,12 +10,11 @@ import {Button} from "reactstrap";
 // it's two conditionals stacked on each other.   
 // first one blocks writing on already filled indexes (indices). 
 // second one updates the gameLog array.
-const logTurn = (settings) => { 
-
- settings.props.gameLog[settings.index] == "X" 
+const logTurn = (settings) => {
+  settings.props.gameLog[settings.index] == "X" 
   ||settings.props.gameLog[settings.index] == "O" ? {}:
 
- settings.props.turnX ? 
+ !settings.props.turnX ? 
  settings.props.gameLog[settings.index] = "X" : 
  settings.props.gameLog[settings.index] = "O"
 };
@@ -24,10 +23,12 @@ const logTurn = (settings) => {
 //would it make sense to set the value as the props.gameLog[index]?
 
 const Square = (settings) => {
-
   const [value, setValue] = useState(false)
+  // console.log(settings)
+
 
   const updateValue =() =>{
+    console.log(settings)
     if ( value =="X" || value =="O") {console.log("already a value here")
       } else if (settings.props.turnX) {
           setValue("X"); 
@@ -40,7 +41,6 @@ const Square = (settings) => {
   logTurn(settings)
   checkforWinner(settings.props)
   if (checkforDraw(settings.props)) {filterDraw(settings.props)}
-
   }
 
   const squareSize = (size)=>{
@@ -53,8 +53,12 @@ const Square = (settings) => {
 
   return(
 
-      <Button key ={`key${settings.index}`}  className={squareSize()} onClick = { () => {updateValue(); 
-      }}  id= {`square${settings.index}`} >
+      <Button 
+        key ={`key${settings.index}`}  
+        className={squareSize()} 
+        onClick = { () => {updateValue(); 
+          }}  
+        id= {`square${settings.index}`} >
           {value}
       </Button>
   )
@@ -70,8 +74,8 @@ const Square = (settings) => {
 // because calling props.props is weird.... is there a better way?
 // 
 const Board = (settings) =>{
-
   
+
 let boardKey = 0
 let rowKey = 0
 let squareCount = 0
@@ -81,8 +85,10 @@ return (
     return(
       <div className={`row${index}`}  key = {`rowKey${rowKey++}`} > 
     {[...Array(settings.props.boardSize).keys()].map((number) => {
+
       return(
-        <Square props = {settings.props} key = {squareCount} index = {squareCount++} value = "empty" />
+        <Square props = {settings.props} key = {squareCount} index = {squareCount++} />
+        
       )
       })}
   </div>
@@ -91,6 +97,26 @@ return (
   </div>
 )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function checkforWinner (settings){
   // console.log(settings)
@@ -147,15 +173,17 @@ function filterLosers(settings, singleArray){
 
 
 function highlightSquares (settings){
-  settings.winningSquares.map((item)=>{
-    const winningSquare = document.getElementById(`square${item}`)
-    winningSquare.classList.add("winnerSquare")
-  })
+
   
   settings.losingSquares.map((item)=>{
     const loserSquare = document.getElementById(`square${item}`)
     loserSquare.classList.add("loserSquare")
     loserSquare.disabled
+  })
+
+  settings.winningSquares.map((item)=>{
+    const winningSquare = document.getElementById(`square${item}`)
+    winningSquare.classList.add("winnerSquare")
   })
 }
 

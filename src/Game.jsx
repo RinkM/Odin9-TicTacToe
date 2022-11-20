@@ -9,19 +9,48 @@ import GameButtons from './GameButtons';
 // setSettings isn't called... only needs to change on:
 // reset and grid size change. Right?
 function Game() {
-  const [settings, setSettings] = useState(()=>SettingsFactory())
-  const [boardSize, setBoardSize] = useState()
+  const [settings, setSettings] = useState(()=>SettingsFactory(3))
+  const [index, setIndex] = useState(1);
 
 
-  console.log("theLog", settings)
+  const resetSettings = ()=> {
+    setSettings(()=>SettingsFactory(3));
+    setIndex((index) => index = 1);
+  }
 
+  const updateSettings = (num)=>{
+    setSettings(()=>SettingsFactory(num))
+  }
+  
+
+  const sizeButton = ()=>{  
+    if (index >= (settings.gameSizes.length)-1){
+      setIndex((index) => index = 0); 
+  } else {
+      setIndex((index) => index + 1)
+  }
+  // settings.boardSize = settings.gameSizes[number]
+  updateSettings(settings.gameSizes[index])
+ }
+   
   return (
-      
       <div className='gameSpace'>
-        <div><GameButtons setBoardSize = {setBoardSize} settings = {settings}/>
-        </div>
-          <div><Board key = "1" props={settings}/>
-          </div>
+        <div className = "gameButtons">
+          <Button className='menuButton' onClick={()=> sizeButton() }>Game Size =  {settings.boardSize}</Button>
+          <Button className='menuButton' onClick = { () => resetSettings()}>
+             Reset
+          </Button>
+          
+          <Button className='menuButton' onClick = { () => {
+            console.log("settings", settings)       }}>
+             Display Settings
+          </Button>
+    </div>
+        {/* <div>
+          <GameButtons updateSettings = {updateSettings} setSettings = {setSettings} settings = {settings}/> 
+        </div> */}
+          <Board key = "0" props={settings}/>
+          
       </div>
   )
 }

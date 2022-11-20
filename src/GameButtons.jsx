@@ -8,34 +8,28 @@ import { Button } from "reactstrap";
 
 const GameButtons = (props)=>{
     const [number, setNumber] = useState(0);
-    
-    console.log("boardsizefunc", props.setBoardSize)
-    
-const sizeButton = ()=>{
+    console.log(props.updateSettings)
 
-  
-  if (number >= (props.settings.gameSizes.length)-1){
-    setNumber((number) => number = 0); 
-  } else {
-    setNumber((number) => number + 1)
-  }
 
-  console.log(number)
+    const sizeButton = ()=>{  
+      if (number >= (props.settings.gameSizes.length)-1){
+        setNumber((number) => number = 0); 
+    } else {
+        setNumber((number) => number + 1)
+    }
+    props.settings.boardSize = props.settings.gameSizes[number]
+    console.log("gamesizes", props.settings.gameSizes[number])
+    console.log("boardsize", props.settings.boardSize)
+    props.updateSettings(props.settings)
 
-  props.setBoardSize(props.settings.gameSizes[number])
 }
 
     return (
     <div className = "gameButtons">
-      <Button onClick={()=> sizeButton() }>  
-    Game Size =  {props.settings.boardSize}
+      <Button onClick={()=> sizeButton() }>Game Size =  {props.settings.boardSize}
     </Button>
-  
-    <Button onClick = { () => {
-      
-       console.log("settings", settings) 
-       }}>
-       Reset doesn't work yet.
+      <Button onClick = { () => {console.log("settings", props.settings)       }}>
+       Reset Button - But I don't work yet.
     </Button>
     </div>
     )
