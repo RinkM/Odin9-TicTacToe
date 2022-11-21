@@ -56,15 +56,32 @@ function Game() {
 
 
 
+// !game text displays the text.  text is an array of options. when the index changes, it selects a different text.
+// would it be better toggle between x / o turns? and make the other messages a different trigger?
+// 
+// 
+// 
+// 
+const GameText = (settings)=>{
+  const [text, setText] = useState()
+  const [messageIndex, setMessageIndex] = useState(0)
+  setText(settings.messageList[messageIndex])
+  
+  const update
+  
+  return (
+    <div className = "gameText" > {text} </div>
+    )
+
+}
 
 
 
 
 
 
-
-
-
+//     messageList: ["Turn: X", "Turn: O", "Winner: X", "Winner: O", "Draw"],
+//     }
 
 
 
