@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import {Button} from "reactstrap";
@@ -24,11 +24,29 @@ const logTurn = (settings) => {
 
 const Square = (settings) => {
   const [value, setValue] = useState(false)
+  const [gridSize, setGridSize] = useState(settings.gridSize)
+  const [update, setUpdate] = useState(settings.update)
   // console.log(settings)
+  if (gridSize != settings.gridSize){
+    setGridSize(settings.gridSize)
+    setValue(false)
+    removeHighlights(settings)
+  }
+
+  if (update != settings.update){
+    setUpdate(settings.update)
+    setValue(false)
+    removeHighlights(settings)
+  }
+
+
+  const resetValue = ()=>{
+    setValue(false)
+  }
 
 
   const updateValue =() =>{
-    console.log(settings)
+    console.log("SquareClicked-Settings", settings)
     if ( value =="X" || value =="O") {console.log("already a value here")
       } else if (settings.props.turnX) {
           setValue("X"); 
@@ -39,14 +57,14 @@ const Square = (settings) => {
     }
 
   logTurn(settings)
-  checkforWinner(settings.props)
+  checkforWinner(settings)
   if (checkforDraw(settings.props)) {filterDraw(settings.props)}
   }
 
   const squareSize = (size)=>{
-    if (settings.props.boardSize >10){size ="smallSquare"
-    } else if (settings.props.boardSize >6){size ="medSquare"
-    } else {size ="bigSquare"
+    if (settings.gridSize >10){size ="smallSquare square"
+    } else if (settings.gridSize >6){size ="medSquare square"
+    } else {size ="bigSquare square"
     }
     return size
   }
@@ -74,20 +92,20 @@ const Square = (settings) => {
 // because calling props.props is weird.... is there a better way?
 // 
 const Board = (settings) =>{
-  
+  console.log('board', settings)
 
 let boardKey = 0
 let rowKey = 0
 let squareCount = 0
 return (
   <div className='board' key = {`boardKey${boardKey++}`}>
-{[...Array(settings.props.boardSize).keys()].map((index) => {
+{[...Array(settings.gridSize).keys()].map((index) => {
     return(
       <div className={`row${index}`}  key = {`rowKey${rowKey++}`} > 
-    {[...Array(settings.props.boardSize).keys()].map((number) => {
+    {[...Array(settings.gridSize).keys()].map((number) => {
 
       return(
-        <Square props = {settings.props} key = {squareCount} index = {squareCount++} />
+        <Square gridSize = {settings.gridSize} props = {settings.props} key = {squareCount} index = {squareCount++} />
         
       )
       })}
@@ -119,18 +137,17 @@ return (
 
 
 function checkforWinner (settings){
-  // console.log(settings)
+  console.log("winner", settings.gridSize)
   let winCondits;
-  if (settings.boardSize<6){
-     winCondits = settings.fullLineWins
+  if (settings.gridSize<6){
+     winCondits = settings.props.fullLineWins
   }else {
-    winCondits = settings.connect4Conditions
+    winCondits = settings.props.connect4Conditions
   }
-  // if (settings.boardSize <6){
   winCondits.map((singleArray)=>{
     let winCheck=[]
     singleArray.map((index)=>{
-      winCheck.push(settings.gameLog[index])
+      winCheck.push(settings.props.gameLog[index])
       })
 
     let Awinner = winCheck.every((item)=> item == winCheck[0])
@@ -162,10 +179,11 @@ function filterDraw(settings){
 
 
 function filterLosers(settings, singleArray){
-  settings.winningSquares = singleArray;
-  settings.losingSquares = settings.fullBoard.filter(item => !singleArray.includes(item));
+  
+  settings.props.winningSquares = singleArray;
+  settings.props.losingSquares = settings.props.fullBoard.filter(item => !singleArray.includes(item));
   console.log(singleArray, "We have a winner!")
-  highlightSquares(settings)
+  highlightSquares(settings.props)
 
 
 }
@@ -178,7 +196,7 @@ function highlightSquares (settings){
   settings.losingSquares.map((item)=>{
     const loserSquare = document.getElementById(`square${item}`)
     loserSquare.classList.add("loserSquare")
-    loserSquare.disabled
+    
   })
 
   settings.winningSquares.map((item)=>{
@@ -187,6 +205,16 @@ function highlightSquares (settings){
   })
 }
 
+
+function removeHighlights(settings){
+  
+  const squares = [...document.getElementsByClassName("square")]
+
+  for (const item of squares){
+    item.classList.remove("winnerSquare")
+    item.classList.remove("loserSquare")
+  }
+}
 
 
 

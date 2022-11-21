@@ -5,30 +5,30 @@
 
 
 
-const SettingsFactory = (size) => {
+const SettingsFactory = (gridSize) => {
     const defaultSettings = {
     turnX: true,
     winner: null,
-    boardSize: size,
+    update:false,
+    boardSize: gridSize,
     difficulty: 1,
     wins: [],
     fullLineWins: [],
     connect4Conditions: [],
-    gameSizes: [2, 3, 4, 5, 6, 7, 22],
+    gameSizes: [3, 4, 7, 20, 2],
     gameMessage: "",
     messageList: ["Turn: X", "Turn: O", "Winner: X", "Winner: O", "Draw"],
     }
-    defaultSettings.gameLog = [...Array(defaultSettings.boardSize**2).keys()]
-    defaultSettings.fullBoard = [...Array(defaultSettings.boardSize**2).keys()];
-    defaultSettings.fullLineWins = fullLineWins(defaultSettings)
-    defaultSettings.connect4Conditions = find4Wins(defaultSettings)
+    defaultSettings.gameLog = [...Array(gridSize**2).keys()]
+    defaultSettings.fullBoard = [...Array(gridSize**2).keys()];
+    defaultSettings.fullLineWins = fullLineWins(gridSize, defaultSettings)
+    defaultSettings.connect4Conditions = find4Wins(gridSize, defaultSettings)
 
   return defaultSettings
   }
   
   
-  
-  function fullLineWins (settings){
+  function fullLineWins (gridSize, settings){
   let winConditions = []  ;
   let diag1 = [];
     let diag2 = [];
@@ -37,18 +37,18 @@ const SettingsFactory = (size) => {
     settings.fullLineWins = []
    
   
-  for (let a=0; a < (settings.boardSize); a++){
+  for (let a=0; a < (gridSize); a++){
     rowWin = [];
     columnWin = []
     
-    let diag1Index = (settings.boardSize+1)*a;
-    let diag2Index = ((settings.boardSize-1)*a +(settings.boardSize-1));
+    let diag1Index = (gridSize+1)*a;
+    let diag2Index = ((gridSize-1)*a +(gridSize-1));
     diag1.push(diag1Index);
     diag2.push(diag2Index);
     
-    for (let b=0; b < (settings.boardSize); b++){
-      let rowIndex = (settings.boardSize*a) + b;
-      let columnIndex = (settings.boardSize*b) + a;
+    for (let b=0; b < (gridSize); b++){
+      let rowIndex = (gridSize*a) + b;
+      let columnIndex = (gridSize*b) + a;
       rowWin.push(rowIndex);
       columnWin.push(columnIndex);
       }
@@ -66,7 +66,7 @@ const SettingsFactory = (size) => {
   
   
   
-  function find4Wins(settings){
+  function find4Wins(gridSize, settings){
   let winConditions = []
   
   settings.gameLog.map((num) => {
@@ -77,9 +77,9 @@ const SettingsFactory = (size) => {
   
     for (let a = 0; a <4; a++){
       rowWins.push(num+a)
-      colWins.push(num+(a*settings.boardSize))
-      diagRight.push(num+(a*settings.boardSize)+a)
-      diagLeft.push(num +(a*settings.boardSize)-a)
+      colWins.push(num+(a*gridSize))
+      diagRight.push(num+(a*gridSize)+a)
+      diagLeft.push(num +(a*gridSize)-a)
     }
   
     winConditions.push(rowWins)

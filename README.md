@@ -6,6 +6,26 @@ This is actually a TicTacToe or Connect 4 game.
 It allows the player to change the size of the grid and will change the winning conditions when this happens. 
 
 
+## 11/21
+fixed the re-renders. it clears teh squares. How? by passing gridSize and update through the component.   they change and the box resets.
+
+game seems to be working OK.   
+
+things to add : messages. who's playing?  Who won?  rules mesages
+players and player names?
+menu / settings before the game starts?
+continue / back????
+
+
+
+
+need to fix the reset button and grid buttons.    reset should stay the same size, but clear the boxes. 
+
+still need to address teh connect4 wins. 
+
+
+
+
 ##Notes
 ## 11/15
 ### Accomplishments :
