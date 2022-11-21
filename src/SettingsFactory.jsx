@@ -14,7 +14,7 @@ const SettingsFactory = (size) => {
     wins: [],
     fullLineWins: [],
     connect4Conditions: [],
-    gameSizes: [2, 3, 4, 5, 6, 7, 22],
+    gameSizes: [3, 4, 5, 6, 7, 22, 2],
     gameMessage: "",
     messageList: ["Turn: X", "Turn: O", "Winner: X", "Winner: O", "Draw"],
     }
