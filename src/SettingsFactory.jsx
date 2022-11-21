@@ -15,7 +15,11 @@ const SettingsFactory = (gridSize) => {
     wins: [],
     fullLineWins: [],
     connect4Conditions: [],
+<<<<<<< HEAD
     gameSizes: [3, 4, 7, 20, 2],
+=======
+    gameSizes: [3, 4, 5, 6, 7, 22, 2],
+>>>>>>> d373bdc877b10b3f06132c1e807cea74137fcbef
     gameMessage: "",
     messageList: ["Turn: X", "Turn: O", "Winner: X", "Winner: O", "Draw"],
     }
