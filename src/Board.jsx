@@ -1,43 +1,42 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+
+
 import {Button} from "reactstrap";
 
 
 
-// ...but it works. updates the settings.gameLog with box info.
-
-// it's two conditionals stacked on each other.   
-// first one blocks writing on already filled indexes (indices). 
-// second one updates the gameLog array.
-const logTurn = (settings) => {
-  settings.props.gameLog[settings.index] == "X" 
-  ||settings.props.gameLog[settings.index] == "O" ? {}:
-
- !settings.props.turnX ? 
- settings.props.gameLog[settings.index] = "X" : 
- settings.props.gameLog[settings.index] = "O"
-};
-
-
-//would it make sense to set the value as the props.gameLog[index]?
 
 const Square = (settings) => {
   const [value, setValue] = useState(false)
   const [gridSize, setGridSize] = useState(settings.gridSize)
   const [update, setUpdate] = useState(settings.update)
-  // console.log(settings)
+  const [gameInformation, setGameInformation] = settings.hooks
+  
+
+  const gameInformationText = () => {
+    let gameInfo;
+    if (settings.props.winner == null) {
+      if (settings.props.turnX) {gameInfo = settings.props.messageList[0]
+      } else {gameInfo = settings.props.messageList[1]}
+    } else if (settings.props.winner == "X") {gameInfo = settings.props.messageList[2];
+    } else if (settings.props.winner == "O") {gameInfo = settings.props.messageList[3];
+    } else if (settings.props.winner == "draw") {gameInfo = settings.props.messageList[4];
+    }
+    console.log("gameinfo", gameInformation)
+    return gameInfo
+  }
+
   if (gridSize != settings.gridSize){
     setGridSize(settings.gridSize)
     setValue(false)
     removeHighlights(settings)
   }
 
-  if (update != settings.update){
-    setUpdate(settings.update)
-    setValue(false)
-    removeHighlights(settings)
-  }
+  // if (update != settings.update){
+  //   setUpdate(settings.update)
+  //   setValue(false)
+  //   removeHighlights(settings)
+  // }
 
 
   const resetValue = ()=>{
@@ -47,20 +46,26 @@ const Square = (settings) => {
 
   const updateValue =() =>{
     console.log("SquareClicked-Settings", settings)
+    settings.props.update = !settings.props.update
+    
     if ( value =="X" || value =="O") {console.log("already a value here")
       } else if (settings.props.turnX) {
           setValue("X"); 
-          settings.props.turnX = (!settings.props.turnX)
+          settings.props.turnX = !settings.props.turnX
         }else {
           setValue("O")
-          settings.props.turnX = (!settings.props.turnX)
+          settings.props.turnX = !settings.props.turnX
     }
 
-  logTurn(settings)
-  checkforWinner(settings)
-  if (checkforDraw(settings.props)) { 
-    settings.winner = "draw";
-    filterDraw(settings.props)}
+    
+    logTurn(settings)
+    checkforWinner(settings)
+
+    if (!checkforWinner(settings) && checkforDraw(settings.props)) { 
+    settings.props.winner = "draw";
+    filterDraw(settings.props)
+    }
+    setTimeout(()=>{setGameInformation(()=> gameInformationText())},"100")
   }
 
   const squareSize = (size)=>{
@@ -94,7 +99,7 @@ const Square = (settings) => {
 // because calling props.props is weird.... is there a better way?
 // 
 const Board = (settings) =>{
-  console.log('board', settings)
+  
 
 let boardKey = 0
 let rowKey = 0
@@ -104,10 +109,10 @@ return (
 {[...Array(settings.gridSize).keys()].map((index) => {
     return(
       <div className={`row${index}`}  key = {`rowKey${rowKey++}`} > 
-    {[...Array(settings.gridSize).keys()].map((number) => {
+    {[...Array(settings.gridSize).keys()].map((number) => {                                                                 
 
       return(
-        <Square gridSize = {settings.gridSize} props = {settings.props} key = {squareCount} index = {squareCount++} />
+        <Square gridSize = {settings.gridSize} props = {settings.props} hooks = {settings.hooks}  key = {squareCount} index = {squareCount++} />
         
       )
       })}
@@ -133,13 +138,32 @@ return (
 
 
 
+// ...but it works. updates the settings.gameLog with box info.
+
+// it's two conditionals stacked on each other.   
+// first one blocks writing on already filled indexes (indices). 
+// second one updates the gameLog array.
+
+//would it make sense to set the value as the props.gameLog[index]?
+
+
+const logTurn = (settings) => {
+  settings.props.gameLog[settings.index] == "X" 
+  ||settings.props.gameLog[settings.index] == "O" ? {}:
+
+ !settings.props.turnX ? 
+ settings.props.gameLog[settings.index] = "X" : 
+ settings.props.gameLog[settings.index] = "O"
+};
+
+
 
 
 
 
 
 function checkforWinner (settings){
-  console.log("winner", settings.gridSize)
+  
   let winCondits;
   if (settings.gridSize<6){
      winCondits = settings.props.fullLineWins
@@ -154,10 +178,16 @@ function checkforWinner (settings){
 
     let aWinner = winCheck.every((item)=> item == winCheck[0])
     if (aWinner){
-    filterLosers(settings, singleArray);
-      if(settings.props.turnX) {settings.props.winner = "X"}
-      else {settings.props.winner = "O"}
+      filterLosers(settings, singleArray);
+      if(settings.props.turnX) {
+        settings.props.winner = "O"
+        } else {settings.props.winner = "X"
+        }
+        return true
+      } else {
+        return false
       }
+
     
   })
 } 

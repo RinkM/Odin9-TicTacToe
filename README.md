@@ -6,6 +6,34 @@ This is actually a TicTacToe or Connect 4 game.
 It allows the player to change the size of the grid and will change the winning conditions when this happens. 
 
 
+
+## 11/22
+issue with draw game.  If the last move is a winning move, it returns as a draw, not a win for player.
+Reset still doesn't work properly.    should keep the same grid size, but reset the buttons. 
+
+The text for Turn doesn't reset when the grid changes size. 
+
+
+
+
+// !game text displays the text.  text comes from an array of options. when the index changes, it selects a different text.
+// would it be better toggle between x / o turns? and make the other messages a different trigger?
+// What trigger would change this?  
+// By clicking on a square, it changes the message.   -> located under Square... Square changes xTurn true/false value...
+// how does it know to change?   Will it change when xTurn changes?
+// ? look at SQUARE - Update and Gridsize.   How are they comparable?
+// by winning or tie game, it changes the message
+// make it a if xTurn = true -> 
+// need to change winning conditions to show who the winner is!  either "X" or "O"
+//   dont have a draw... what do I need to do for that... look in draw information. 
+// 
+// instead of using settings.update, what about settings.xTurn?  
+// ?it happens every click and I'm already using it in the componant.
+// ? but what happens if you reset on X turn?  it stays the same and will it force a redraw?  should it?  it'll have the same message...
+
+
+// setSettings isn't called... only needs to change on:
+// reset and grid size change. Right?
 ## 11/21
 fixed the re-renders. it clears teh squares. How? by passing gridSize and update through the component.   they change and the box resets.
 

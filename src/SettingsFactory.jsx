@@ -16,7 +16,6 @@ const SettingsFactory = (gridSize) => {
     fullLineWins: [],
     connect4Conditions: [],
     gameSizes: [3, 4, 7, 20, 2],
-    gameMessage: "",
     messageList: ["Turn: X", "Turn: O", "Winner: X", "Winner: O", "Draw"],
     }
     defaultSettings.gameLog = [...Array(gridSize**2).keys()]

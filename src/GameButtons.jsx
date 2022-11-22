@@ -1,66 +1,55 @@
 import { useState } from "react";
 import { Button } from "reactstrap";
-
+import SettingsFactory from "./SettingsFactory.jsx"
 
 
 
 
 
 const GameButtons = (props)=>{
-    const [number, setNumber] = useState(0);
-    console.log(props.updateSettings)
 
+  const [settings, setSettings] = props.hookSettings
+  const [index, setIndex] = props.hookIndex
+  const [gridSize, setGridSize] = props.hookGridSize
+  const [gameInformation, setGameInformation] = props.hookInfo
 
-    const sizeButton = ()=>{  
-      if (number >= (props.settings.gameSizes.length)-1){
-        setNumber((number) => number = 0); 
-    } else {
-        setNumber((number) => number + 1)
-    }
-    props.settings.boardSize = props.settings.gameSizes[number]
-    console.log("gamesizes", props.settings.gameSizes[number])
-    console.log("boardsize", props.settings.boardSize)
-    props.updateSettings(props.settings)
-
-}
-
-    return (
-    <div className = "gameButtons">
-      <Button onClick={()=> sizeButton() }>Game Size =  {props.settings.boardSize}
-    </Button>
-      <Button onClick = { () => {console.log("settings", props.settings)       }}>
-       Reset Button - But I don't work yet.
-    </Button>
-    </div>
-    )
   
+
+  const resetSettings = ()=> {
+    setSettings(()=>SettingsFactory(3));
+    setIndex((index) => index = 1);
+    setGridSize(3)
+    settings.update = !settings.update
+    setGameInformation(settings.messageList[0])
   }
   
+  const gridSizeButton = ()=>{  
+    if (index >= (settings.gameSizes.length)-1){
+      setIndex((index) => index = 0); 
+  } else {
+      setIndex((index) => index + 1)
+  }
+  setSettings(()=>SettingsFactory(settings.gameSizes[index]));
+  setGridSize(settings.gameSizes[index])
+  setGameInformation(settings.messageList[0])
+
+  }
 
 
 
 
-// function game2Text(settings) {
-
-//   if (settings.winner == "draw"){
-//     return "Draw Game. No one wins."
-
-//   } else if (settings.winner){
-//     return `${settings.winner} Wins!`}
-
-//   else if (turnX==true && winner ==null){
-//     return "X Turn"
-//   }
-//   else if (!turnX && winner ==null){
-//     return "O turn"
-//   }
-
-//   else{
-//     return console.log("Message function has gone wrong...")}
-// }
-
-// message:[
-
+  return (
+    <div className = "gameButtons">
+        <Button className='menuButton' onClick={()=> gridSizeButton() }>Game Size =  {gridSize}</Button>
+        <Button className='menuButton' onClick = { () => resetSettings()}>
+          Reset</Button>
+        <Button className='menuButton' onClick = { () => {
+          console.log("settings", settings)       }}>
+          Display Settings
+        </Button>
+      </div>
+  )
+}
 
 
 
