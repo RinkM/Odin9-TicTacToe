@@ -58,7 +58,9 @@ const Square = (settings) => {
 
   logTurn(settings)
   checkforWinner(settings)
-  if (checkforDraw(settings.props)) {filterDraw(settings.props)}
+  if (checkforDraw(settings.props)) { 
+    settings.winner = "draw";
+    filterDraw(settings.props)}
   }
 
   const squareSize = (size)=>{
@@ -150,11 +152,13 @@ function checkforWinner (settings){
       winCheck.push(settings.props.gameLog[index])
       })
 
-    let Awinner = winCheck.every((item)=> item == winCheck[0])
+    let aWinner = winCheck.every((item)=> item == winCheck[0])
+    if (aWinner){
+    filterLosers(settings, singleArray);
+      if(settings.props.turnX) {settings.props.winner = "X"}
+      else {settings.props.winner = "O"}
+      }
     
-    Awinner ? 
-      filterLosers(settings, singleArray)
-      :{}
   })
 } 
 
@@ -162,6 +166,7 @@ function checkforWinner (settings){
 function checkforDraw(settings){
   const tieGame = (value) => typeof value == "string" ;
   const tieResults =  settings.gameLog.every(tieGame);
+
   return tieResults
 
 }
