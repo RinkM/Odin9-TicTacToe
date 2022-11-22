@@ -2,8 +2,12 @@
 TicTacToe with Vite / React
 Assignment is found here : https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
 Goal : Build a 3x3 TicTacToe game. 
-This is actually a TicTacToe or Connect 4 game. 
-It allows the player to change the size of the grid and will change the winning conditions when this happens. 
+Learning Goals:
+Use Factory functions to create objects.
+Use React to design the game.  Practice using Hooks and passing information through.
+
+
+Notes : I wanted to go above and beyond with this one.  Assignment calls for Javascript Vanilla, but I made this using React. Also, it's not just a TicTacToe game.  It is also a Connect 4 game because it allows the player to change the size of the grid. It will also change the winning conditions when this happens. 
 
 
 
@@ -13,27 +17,12 @@ Reset still doesn't work properly.    should keep the same grid size, but reset 
 
 The text for Turn doesn't reset when the grid changes size. 
 
+Add game rules. 3 in a row wins. Connect 4. etc. 
+change the game size button to a slider?  pull down.  something different. toggle game
+still need to fix diagonal win condits. 
 
 
 
-// !game text displays the text.  text comes from an array of options. when the index changes, it selects a different text.
-// would it be better toggle between x / o turns? and make the other messages a different trigger?
-// What trigger would change this?  
-// By clicking on a square, it changes the message.   -> located under Square... Square changes xTurn true/false value...
-// how does it know to change?   Will it change when xTurn changes?
-// ? look at SQUARE - Update and Gridsize.   How are they comparable?
-// by winning or tie game, it changes the message
-// make it a if xTurn = true -> 
-// need to change winning conditions to show who the winner is!  either "X" or "O"
-//   dont have a draw... what do I need to do for that... look in draw information. 
-// 
-// instead of using settings.update, what about settings.xTurn?  
-// ?it happens every click and I'm already using it in the componant.
-// ? but what happens if you reset on X turn?  it stays the same and will it force a redraw?  should it?  it'll have the same message...
-
-
-// setSettings isn't called... only needs to change on:
-// reset and grid size change. Right?
 ## 11/21
 fixed the re-renders. it clears teh squares. How? by passing gridSize and update through the component.   they change and the box resets.
 
