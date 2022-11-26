@@ -36,17 +36,20 @@ also, there is an issue with rendering upon reset / gridchange..   It doesn't st
 
 
  Today I : 
+
 * fixed reset button. 
 * added win conditions.
 * cleaned up a lot of the code. 
 * fixed the connect 4 wins.  
+* fixed the draw game + winner problem.
+* Fixed double wins.  They all show as winning
 
 To finalize this, I still need to : 
 
 * fix the react render error code.
 * Add an AI?   (Not required, but interesting.)
-* Fix the draw game message when there is a winner...
-* fix double wins or 5 space wins.   
+* Fix the draw game message when there is a winner... **Fixed**
+* fix double wins or 5 space wins.   **Fixed**
 
 
 

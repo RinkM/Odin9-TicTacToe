@@ -54,9 +54,9 @@ const Square = (settings) => {
   
       
       logTurn(settings)
-      checkforWinner(settings)
       if (!checkforWinner(settings) && checkforDraw(settings.props)) { 
-      settings.props.winner = "draw";
+        settings.props.winner = "draw";
+      checkforWinner(settings)
       filterDraw(settings.props)
       }
       setTimeout(()=>{setGameInformation(()=> gameInformationText())},"100")
@@ -113,8 +113,7 @@ function checkforWinner (settings){
       filterLosers(settings, singleArray);
       if(settings.props.turnX) {
         settings.props.winner = "O"
-        } else {settings.props.winner = "X"
-        }
+        } else {settings.props.winner = "X"}
         return true
       } else {
         return false
@@ -128,7 +127,7 @@ function checkforWinner (settings){
 function checkforDraw(settings){
   const tieGame = (value) => typeof value == "string" ;
   const tieResults =  settings.gameLog.every(tieGame);
-
+  console.log(tieResults)
   return tieResults
 
 }
@@ -169,7 +168,12 @@ function highlightSquares (settings){
   settings.winningSquares.map((item)=>{
     const winningSquare = document.getElementById(`square${item}`)
     winningSquare.classList.add("winnerSquare")
+    winningSquare.classList.remove("loserSquare")
   })
+  
+  let theWinners = Array.from(document.getElementsByClassName("winnerSquare"))
+  console.log(theWinners)
+  theWinners.map((winner)=>{winner.classList.remove("loserSquare")})
 }
 
 
