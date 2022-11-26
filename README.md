@@ -1,6 +1,9 @@
 # Odin9-TicTacToe
 ## TicTacToe with Vite / React
 
+## Preview 
+https://codesandbox.io/p/github/RinkM/Odin9-TicTacToe/draft/polished-bush
+
 Assignment is found here : https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
 
 Goal : Build a 3x3 TicTacToe game. 
