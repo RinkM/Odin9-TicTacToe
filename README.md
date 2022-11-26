@@ -1,5 +1,5 @@
-# OdinVite9TicTacToe
-TicTacToe with Vite / React
+# Odin9-TicTacToe
+## TicTacToe with Vite / React
 
 Assignment is found here : https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
 
@@ -10,7 +10,7 @@ Use Factory functions to create objects.
 Use React to design the game.  Practice using Hooks and passing information through.
 
 ## Notes 
-I wanted to go above and beyond with this one.  Assignment calls for Javascript Vanilla, but I made this using React. Also, it's not just a TicTacToe game.  It is also a Connect 4 game because it allows the player to change the size of the grid. It will also change the winning conditions when this happens. 
+I wanted to go above and beyond.  Assignment calls for Javascript Vanilla, but I made this using React. Also, it's not just a TicTacToe game.  It is also a Connect 4 game because it allows the player to change the size of the grid. It will also change the winning conditions when this happens. 
 
 ## Things I learned
 * I got more practice with React.  
@@ -45,7 +45,8 @@ To finalize this, I still need to :
 
 * fix the react render error code.
 * Add an AI?   (Not required, but interesting.)
-* Fix the draw game message when there is a winner...   
+* Fix the draw game message when there is a winner...
+* fix double wins or 5 space wins.   
 
 
 
@@ -108,7 +109,7 @@ can I search and pick squares by value?  All X squares?
 
 ### Known Issues :
 
-* the winning squares are funny when it's a 5 space win.  they only highlight some boxes. breaking out of the .every would stop this... by stopping at the first positive hit, it wouldn't mess with the others.  
+* the winning squares are funny when it's a 5 space win.  they only highlight some boxes. breaking out of the .every would stop this... by stopping at the first positive hit, it wouldn't mess with the others.   
 * reset button doesn't reset **HAS BEEN SOLVED**
 * connect 4 win conditions are still too broad.  **HAS BEEN SOLVED**
 * ~~clicking on already clicked boxes~~ **HAS BEEN SOLVED**
