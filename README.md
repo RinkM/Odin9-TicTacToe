@@ -6,8 +6,47 @@ Learning Goals:
 Use Factory functions to create objects.
 Use React to design the game.  Practice using Hooks and passing information through.
 
+## Notes 
+I wanted to go above and beyond with this one.  Assignment calls for Javascript Vanilla, but I made this using React. Also, it's not just a TicTacToe game.  It is also a Connect 4 game because it allows the player to change the size of the grid. It will also change the winning conditions when this happens. 
 
-Notes : I wanted to go above and beyond with this one.  Assignment calls for Javascript Vanilla, but I made this using React. Also, it's not just a TicTacToe game.  It is also a Connect 4 game because it allows the player to change the size of the grid. It will also change the winning conditions when this happens. 
+## Things I learned
+* I got more practice with React.  
+  - how siblings interact and how parents connect them.
+  - how components update and affect others. 
+  - passing arguments through components. 
+* factory functions 
+  - practiced making objects. 
+* more css and style practice.
+* some logic to find win conditions.
+* [...] spread syntax.  and [...Array]
+
+
+
+
+## 11/25
+
+I'm broadly done with the game. 
+// There are a number of hooks that are drilled(threaded?) through the components. It would be smart to use Redux.  (or Flux?)
+// but it's also just a tictactoe game....  with 6 components.  I can keep track of the hooks, I say, overconfidently.
+// also, there is an issue with rendering upon reset / gridchange..   It doesn't stop the game, so I've left it for now.
+
+
+ Today I : 
+* fixed reset button. 
+* added win conditions.
+* cleaned up a lot of the code. 
+* fixed the connect 4 wins.  
+
+To finalize this, I still need to : 
+
+* fix the react render error code.
+* Add an AI?   (Not required, but interesting.)
+* Fix the draw game message when there is a winner...   
+
+
+
+
+
 
 
 
@@ -24,7 +63,7 @@ still need to fix diagonal win condits.
 
 
 ## 11/21
-fixed the re-renders. it clears teh squares. How? by passing gridSize and update through the component.   they change and the box resets.
+fixed the re-renders. it clears the squares. How? by passing gridSize and update through the component.   they change and the box resets.
 
 game seems to be working OK.   
 
