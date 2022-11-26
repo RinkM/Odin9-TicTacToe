@@ -3,24 +3,20 @@ import { Button } from "reactstrap";
 import SettingsFactory from "./SettingsFactory.jsx"
 
 
-
-
-
 const GameButtons = (props)=>{
 
   const [settings, setSettings] = props.hookSettings
   const [index, setIndex] = props.hookIndex
   const [gridSize, setGridSize] = props.hookGridSize
   const [gameInformation, setGameInformation] = props.hookInfo
-
+  const [resetGame, setResetGame] = props.hookReset
   
 
   const resetSettings = ()=> {
-    setSettings(()=>SettingsFactory(3));
-    setIndex((index) => index = 1);
-    setGridSize(3)
-    settings.update = !settings.update
+    setResetGame(true)
+    setSettings(()=>SettingsFactory(gridSize));
     setGameInformation(settings.messageList[0])
+    console.log('buttonpress')
   }
   
   const gridSizeButton = ()=>{  
@@ -32,7 +28,6 @@ const GameButtons = (props)=>{
   setSettings(()=>SettingsFactory(settings.gameSizes[index]));
   setGridSize(settings.gameSizes[index])
   setGameInformation(settings.messageList[0])
-
   }
 
 
@@ -43,19 +38,11 @@ const GameButtons = (props)=>{
         <Button className='menuButton' onClick={()=> gridSizeButton() }>Game Size =  {gridSize}</Button>
         <Button className='menuButton' onClick = { () => resetSettings()}>
           Reset</Button>
-        <Button className='menuButton' onClick = { () => {
-          console.log("settings", settings)       }}>
-          Display Settings
-        </Button>
+        <Button className='menuButton' onClick = { () => {console.log("settings", settings)}}>
+          Display Settings</Button>
       </div>
   )
 }
-
-
-
-
-
-
 
 
   export default GameButtons
