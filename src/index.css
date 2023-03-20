@@ -63,7 +63,7 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: 2px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -112,6 +112,7 @@ button:focus-visible {
   font-size: 7em;
   line-height: .5;
   border: solid 1px cadetblue; 
+  margin: 3px
 }
 
 .smallSquare{
